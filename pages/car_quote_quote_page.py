@@ -2,7 +2,7 @@ from pages.base_page import Page
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
-
+#TODO this places is a mess I am sorry
 class CarQuotePage(Page):
 
     TITLES_ARRAY = (By.CSS_SELECTOR, 'h4.carrier-name')
@@ -19,7 +19,7 @@ class CarQuotePage(Page):
         for i in k:
             print(i.text)
 
-  
+
     def gather_all_quotes(self):
         dict_1 = {}
         wrapper = self.driver.find_element(*self.WRAPPER)
