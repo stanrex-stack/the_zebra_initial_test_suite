@@ -1,5 +1,6 @@
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from time import sleep
 
 from pages.base_page import Page
 
@@ -33,6 +34,7 @@ class CarVehiclesPage(Page):
     def enter_car_model(self, model):
         self.wait_for_element_to_be_clickable(*self.VEHICLE_MODEL_INPUT)
         self.input(model, *self.VEHICLE_MODEL_INPUT)
+        sleep(1)
         self.wait_for_certain_amount_of_elements(1, *self.DROP_DOWN_ITEM)
         self.input(Keys.ENTER, *self.VEHICLE_MODEL_INPUT)
 
@@ -41,6 +43,7 @@ class CarVehiclesPage(Page):
         self.driver.execute_script("arguments[0].scrollIntoView(true);", e)
         self.wait_for_element_to_be_clickable(*self.VEHICLE_SUBMODEL_INPUT)
         self.input(trim, *self.VEHICLE_SUBMODEL_INPUT)
+        sleep(1)
         self.wait_for_certain_amount_of_elements(1, *self.DROP_DOWN_ITEM)
         self.input(Keys.ENTER, *self.VEHICLE_SUBMODEL_INPUT)
 
@@ -60,6 +63,7 @@ class CarVehiclesPage(Page):
         else:
             raise ValueError(f"{option} not a valid answer, {valid_answers}")
         locator = self._get_car_answer_locator(option)
+        sleep(1)
         self.wait_for_element_to_be_clickable_click(*locator)
 
     def select_car_usage(self, option):
@@ -75,6 +79,7 @@ class CarVehiclesPage(Page):
         else:
             raise ValueError(f"{option} not a valid answer, {valid_answers}")
         locator = self._get_car_answer_locator(option)
+        sleep(1)
         self.wait_for_element_to_be_clickable_click(*locator)
         self.wait_for_element_to_appear(*self.VEHICLE_DETAIL_SELECTED)
 
