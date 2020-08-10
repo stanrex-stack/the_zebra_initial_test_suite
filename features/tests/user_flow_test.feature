@@ -11,6 +11,7 @@ Feature: Tests for UI
     And Enter address: 1845 Comanche Creek Drive
     And Enter name Quanah Parker, dob 03/25/1983, continue
     And Enter 2020, Ford, Mustang, Shelby, continue
+    #TODO THE MUSTANG, SHELBY STEPS ARE FALLING 
     And Select option 2 for owning a car
     And Select option 4 for car usage
     And Enter milage 12000, continue

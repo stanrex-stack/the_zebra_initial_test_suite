@@ -14,7 +14,7 @@ class CarVehiclesPage(Page):
     VEHICLE_SUBMODEL_INPUT = (By.ID, 'submodelSubmodel-0Input-0')
 
     SAVE_AND_CONTINUE_BUTTON = (By.CSS_SELECTOR, '.btn-continue')
-
+    #TODO IM NOT SURE ABOUT THIS LOCATOR
     FIRST_QUESTION_FIRST_RADIO_BUTTON = (By.CSS_SELECTOR, 'label[for="ownership-0-0"]')
     FIRST_QUESTION_SECOND_RADIO_BUTTON = (By.CSS_SELECTOR, 'label[for="ownership-2-0"]')
     FIRST_QUESTION_THIRD_RADIO_BUTTON = (By.CSS_SELECTOR, 'label[for="ownership-1-0"]')
