@@ -1,8 +1,4 @@
 from selenium import webdriver
-from selenium.webdriver.support.wait import WebDriverWait
-from features.logger import myListner
-from selenium.webdriver.support.events import EventFiringWebDriver
-
 from app.application import Application
 
 
@@ -10,13 +6,11 @@ def browser_init(context):
     """
     :param context: Behave context
     """
+    # executable_path = 'drivers/chromedriver'
     context.driver = webdriver.Chrome()
-
     context.driver.maximize_window()
-    context.driver.implicitly_wait(4)
-
+    context.driver.implicitly_wait(5)
     context.app = Application(context.driver)
-    context.driver.wait = WebDriverWait(context.driver, 15)
 
 
 def before_scenario(context, scenario):

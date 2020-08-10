@@ -21,7 +21,6 @@ class CarStartPage(Page):
     LAST_NAME_INPUT_FIELD = (By.ID, 'last_namestart')
     BIRTH_DATE_INPUT_FIELD = (By.ID, 'date_of_birthstart')
 
-
     def _get_own_home_answer_locator(self, option):
         return [self.OWN_HOME_ANSWER[0], self.OWN_HOME_ANSWER[1].replace('{SUBSTRING_OPTION}', option)]
 

@@ -1,151 +1,95 @@
 from pages.base_page import Page
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from time import sleep
+
 
 class CarDriverOnePage(Page):
-
-    GENDER_QUESTION_RADIO_ONE = (By.CSS_SELECTOR, 'label[for="gender-0-0"]')
-    # TODO {SUBSTRING_OPTION}
-    GENDER_QUESTION_RADIO_TWO = (By.CSS_SELECTOR, 'label[for="gender-{SUBSTRING_OPTION}-0"]')
-
-    MARITAL_QUESTION_RADIO_ONER = (By.CSS_SELECTOR, 'label[for="marital_status-0-0"]')
-    # TODO {SUBSTRING_OPTION}
-    MARITAL_QUESTION_RADIO_TWO = (By.CSS_SELECTOR, 'label[for="marital_status-1-0"]')
-    MARITAL_QUESTION_RADIO_THREE = (By.CSS_SELECTOR, 'label[for="marital_status-2-0"]')
-    MARITAL_QUESTION_RADIO_FOUR = (By.CSS_SELECTOR, 'label[for="marital_status-3-0"]')
-
-    CREDIT_QUESTION_RADIO_ONE = (By.CSS_SELECTOR, 'label[for="credit_score-0-0"]')
-    # TODO {SUBSTRING_OPTION}
-    CREDIT_QUESTION_RADIO_TWO = (By.CSS_SELECTOR, 'label[for="credit_score-1-0"]')
-    CREDIT_QUESTION_RADIO_THREE = (By.CSS_SELECTOR, 'label[for="credit_score-2-0"]')
-    CREDIT_QUESTION_RADIO_FOUR = (By.CSS_SELECTOR, 'label[for="credit_score-4-0"]')
-
-    EDUCATION_QUESTION_RADIO_ONE = (By.CSS_SELECTOR, 'label[for="education-4-0"]')
-    # TODO {SUBSTRING_OPTION}
-    EDUCATION_QUESTION_RADIO_TWO = (By.CSS_SELECTOR, 'label[for="education-3-0"]')
-    EDUCATION_QUESTION_RADIO_THREE = (By.CSS_SELECTOR, 'label[for="education-2-0"]')
-    EDUCATION_QUESTION_RADIO_FOUR = (By.CSS_SELECTOR, 'label[for="education-1-0"]')
-    EDUCATION_QUESTION_RADIO_FIVE = (By.CSS_SELECTOR, 'label[for="education-0-0"]')
-
+    QUESTIONS = (By.CSS_SELECTOR, 'h3.question-text')
+    GENDER_MALE = (By.CSS_SELECTOR, 'label[for="gender-0-0"]')
+    GENDER_FEMALE = (By.CSS_SELECTOR, 'label[for="gender-1-0"]')
+    GENDER_SELECTED = (By.CSS_SELECTOR, "div#gender-0 span.complete")
+    MARITAL_STATUS_ANSWER = (By.CSS_SELECTOR, 'label[data-cy*="{MARITAL_STATUS}"][for*="marital_status"]')
+    MARITAL_STATUS_SELECTED = (By.CSS_SELECTOR, 'div#marital_status-0 span.complete')
+    CREDIT_SCORE = (By.CSS_SELECTOR, 'label[data-cy*="{SCORE}"][for*="score"]')
+    CREDIT_SCORE_SELECTED = (By.CSS_SELECTOR, 'div#credit_score-0 span.complete')
+    EDUCATION = (By.CSS_SELECTOR, 'label[data-cy*="{EDUCATION_LEVEL}"][for*="education"]')
+    EDUCATION_SELECTED = (By.CSS_SELECTOR, 'div#education-0 span.complete')
     INSURED_QUESTION_RADIO_ONE = (By.CSS_SELECTOR, 'label[for="insured_length-3-0"]')
-    # TODO {SUBSTRING_OPTION}
-    INSURED_QUESTION_RADIO_TWO = (By.CSS_SELECTOR, 'label[for="insured_length-2-0"]')
-    INSURED_QUESTION_RADIO_THREE = (By.CSS_SELECTOR, 'label[for="insured_length-1-0"]')
-    INSURED_QUESTION_RADIO_FOUR = (By.CSS_SELECTOR, 'label[for="insured_length-0-0"]')
+    INSURED_ANSWERED = (By.CSS_SELECTOR, 'div#insured_length-0 span.complete')
 
     CURRENT_PROVIDER_FIELD = (By.ID, "current_carrierCurrent_carrierInput-0")
-        # (By.CSS_SELECTOR, 'label[for="current_carrierCurrent_carrierInput-0"]')
     CURRENT_PROVIDER_FIRST_SELECT = (By.CSS_SELECTOR, '#current_carrier-0 div.item:nth-of-type(1)')
-
-    VIOLATIONS_QUESTION_FIRST_ANSWER = (By.CSS_SELECTOR, 'label[for="violations-1-0"]')
-    # TODO {SUBSTRING_OPTION}
-    VIOLATIONS_QUESTION_SECOND_ANSWER = (By.CSS_SELECTOR, 'label[for="violations-0-0"]')
+    CURRENT_PROVIDER_SELECTED = (By.CSS_SELECTOR, "div#current_carrier-0 span.complete")
+    ANY_ACCIDENTS_ANSWER = (By.CSS_SELECTOR, 'label[for="violations-{SUBSTRING_OPTION}-0"]')
 
     EMAIL_INPUT_FIELD = (By.CSS_SELECTOR, '.email input')
-
-    DISCOUNT_CHECKBOX_ONE = (By.CSS_SELECTOR, 'label[for="currently_employed"]')
-    #TODO how do i rotate thees locators ?
-    DISCOUNT_CHECKBOX_TWO = (By.CSS_SELECTOR, 'label[for="active_military"]')
-    DISCOUNT_CHECKBOX_THREE = (By.CSS_SELECTOR, 'label[for="pay_up_front"]')
-    DISCOUNT_CHECKBOX_FOUR = (By.CSS_SELECTOR, 'label[for="auto_pay"]')
-    DISCOUNT_CHECKBOX_FIVE = (By.CSS_SELECTOR, 'label[for="paperless"]')
-
-    REFERRAL_INPUT_FIELD = (By.ID, "referral_sourceReferral_sourceInput-0")
-        # (By.CSS_SELECTOR, 'label[for="referral_sourceReferral_sourceInput-0"]')
-    REFERRAL_FIRST_SELECT = (By.CSS_SELECTOR, '#referral_source-0 div.item:nth-of-type(1)')
-
-    SPOUSE_FIRST_NAME_INPUT_FIELD = (By.CSS_SELECTOR, '.driverPII input#first_name-1')
-    SPOUSE_LAST_NAME_INPUT_FIELD = (By.CSS_SELECTOR, '.driverPII input#last_name-1')
-    SPOUSE_BIRTH_DATE_INPUT_FIELD = (By.CSS_SELECTOR, '.driverPII input#date_of_birth-1')
-
-    SPOUSE_GENDER_QUESTION_RADIO_ONE = (By.CSS_SELECTOR, 'label[for="gender-0-1"]')
-    # TODO {SUBSTRING_OPTION}
-    SPOUSE_GENDER_QUESTION_RADIO_TWO = (By.CSS_SELECTOR, 'label[for="gender-1-1"]')
-
-    ANOTHER_DRIVER_QUESTION_RADIO_ONE = (By.CSS_SELECTOR, 'label[for="add_another-1-1"]')
-    ANOTHER_DRIVER_QUESTION_RADIO_TWO = (By.CSS_SELECTOR, 'label[for="add_another-0-1"]')
-
-    SHOW_QUOTES_FINAL_CONTINUE_BUTTON = (By.ID, 'summaryShowQuotesBtn')
-
-    def enter_email(self, email):
-        self.input(email, *self.EMAIL_INPUT_FIELD)
-
-    def enter_spouse_first_name(self, first):
-        self.input(first, *self.SPOUSE_FIRST_NAME_INPUT_FIELD)
-
-    def enter_spouse_last_name(self, last):
-        self.input(last, *self.SPOUSE_LAST_NAME_INPUT_FIELD)
-
-    def enter_spouse_dob(self, dob):
-        self.input(dob, *self.SPOUSE_BIRTH_DATE_INPUT_FIELD)
-
-    def _get_select_gender_answer_locator(self, option):
-        return [self.GENDER_QUESTION_RADIO_ONE[0], self.GENDER_QUESTION_RADIO_ONE[1].replace('{SUBSTRING_OPTION}', option)]
-
-    def select_gender(self, option):
-        locator = self._get_select_gender_answer_locator(option)
-        self.wait_for_element_to_be_clickable_click(*locator)
+    SHOW_QUOTES_BUTTON = (By.ID, 'summaryShowQuotesBtn')
 
     def _get_select_marital_answer_locator(self, option):
-        return [self.MARITAL_QUESTION_RADIO_TWO[0], self.MARITAL_QUESTION_RADIO_TWO[1].replace('{SUBSTRING_OPTION}', option)]
-
-    def select_marital(self, option):
-        locator = self._get_select_marital_answer_locator(option)
-        self.wait_for_element_to_be_clickable_click(*locator)
+        return [self.MARITAL_STATUS_ANSWER[0], self.MARITAL_STATUS_ANSWER[1].replace('{MARITAL_STATUS}', option)]
 
     def _get_select_credit_answer_locator(self, option):
-        return [self.CREDIT_QUESTION_RADIO_TWO[0],  self.CREDIT_QUESTION_RADIO_TWO[1].replace('{SUBSTRING_OPTION}', option)]
-
-    def select_credit(self, option):
-        locator = self._get_select_credit_answer_locator(option)
-        self.wait_for_element_to_be_clickable_click(*locator)
+        return [self.CREDIT_SCORE[0], self.CREDIT_SCORE[1].replace('{SCORE}', option)]
 
     def _get_select_education_answer_locator(self, option):
-        return [self.EDUCATION_QUESTION_RADIO_FIVE[0], self.EDUCATION_QUESTION_RADIO_FIVE[1].replace('{SUBSTRING_OPTION}', option)]
-
-    def select_education(self, option):
-        locator = self._get_select_education_answer_locator(option)
-        self.wait_for_element_to_be_clickable_click(*locator)
-
-    def _get_select_duration_answer_locator(self, option):
-        return [self.INSURED_QUESTION_RADIO_FOUR[0], self.INSURED_QUESTION_RADIO_FOUR[1].replace('{SUBSTRING_OPTION}', option)]
-
-    def select_duration(self, option):
-        locator = self._get_select_duration_answer_locator(option)
-        self.wait_for_element_to_be_clickable_click(*locator)
+        return [self.EDUCATION[0], self.EDUCATION[1].replace('{EDUCATION_LEVEL}', option)]
 
     def _get_select_accidents_answer_locator(self, option):
-        return [self.VIOLATIONS_QUESTION_SECOND_ANSWER[0], self.VIOLATIONS_QUESTION_SECOND_ANSWER[1].replace('{SUBSTRING_OPTION}', option)]
+        return [self.ANY_ACCIDENTS_ANSWER[0], self.ANY_ACCIDENTS_ANSWER[1].replace('{SUBSTRING_OPTION}', option)]
+
+    def select_gender(self, option):
+        self.wait_for_element_to_appear(*self.GENDER_MALE)
+        self.wait_for_all_elements_located(*self.QUESTIONS)
+        if option == 'male':
+            self.wait_for_element_to_be_clickable_click(*self.GENDER_MALE)
+        elif option == 'female':
+            self.wait_for_element_to_be_clickable_click(*self.GENDER_FEMALE)
+        self.wait_for_element_to_be_located(*self.GENDER_SELECTED)
+
+    def select_marital_status(self, option):
+        locator = self._get_select_marital_answer_locator(option.capitalize())
+        self.wait_for_element_to_be_clickable_click(*locator)
+        self.wait_for_element_to_appear(*self.MARITAL_STATUS_SELECTED)
+
+    def select_credit(self, option):
+        self.wait_for_all_elements_located(*self.QUESTIONS)
+        locator = self._get_select_credit_answer_locator(option.capitalize())
+        self.wait_for_element_to_be_clickable_click(*locator)
+        self.wait_for_element_to_appear(*self.CREDIT_SCORE_SELECTED)
+
+    def select_education(self, option):
+        self.wait_for_all_elements_located(*self.QUESTIONS)
+        locator = self._get_select_education_answer_locator(option.capitalize())
+        self.wait_for_element_to_be_clickable_click(*locator)
+        self.wait_for_element_to_appear(*self.EDUCATION_SELECTED)
+
+    def select_duration(self, option):
+        self.wait_for_all_elements_located(*self.QUESTIONS)
+        # Just hardcoding to option 1
+        self.wait_for_element_to_be_clickable_click(*self.INSURED_QUESTION_RADIO_ONE)
+        self.wait_for_element_to_appear(*self.INSURED_ANSWERED)
 
     def select_accidents(self, option):
+        self.wait_for_all_elements_located(*self.QUESTIONS)
+        if option == 'no':
+            option = '0'
+        elif option == 'yes':
+            option = '1'
         locator = self._get_select_accidents_answer_locator(option)
         self.wait_for_element_to_be_clickable_click(*locator)
 
-    def _get_select_discounts_answer_locator(self, option):
-        return [self.DISCOUNT_CHECKBOX_TWO[0], self.DISCOUNT_CHECKBOX_TWO[1].replace('{SUBSTRING_OPTION}', option)]
-    # TODO This step should fall becasue I reused this step twice in the BDD, but assigned only one locator above
-    def select_discounts(self, option):
-        locator = self._get_select_discounts_answer_locator(option)
-        self.wait_for_element_to_be_clickable_click(*locator)
+    def enter_provider(self, provider):
+        e = self.wait_for_element_to_appear(*self.CURRENT_PROVIDER_FIELD)
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", e)
+        self.wait_for_element_to_be_clickable_click(*self.CURRENT_PROVIDER_FIELD)
 
-    def _get_select_spouse_gender_answer_locator(self, option):
-        return [self.SPOUSE_GENDER_QUESTION_RADIO_TWO[0], self.SPOUSE_GENDER_QUESTION_RADIO_TWO[1].replace('{SUBSTRING_OPTION}', option)]
-
-    def select_spouse_gender(self, option):
-        locator = self._get_select_spouse_gender_answer_locator(option)
-        self.wait_for_element_to_be_clickable_click(*locator)
-
-    def _get_select_additional_driver_answer_locator(self, option):
-        return [self.ANOTHER_DRIVER_QUESTION_RADIO_TWO[0], self.ANOTHER_DRIVER_QUESTION_RADIO_TWO[1].replace('{SUBSTRING_OPTION}', option)]
-
-
-    def select_additional_driver(self, option):
-        locator = self._get_select_additional_driver_answer_locator(option)
-        self.wait_for_element_to_be_clickable_click(*locator)
-
-    #
-    def enter_provider(self, result):
-        self.wait_for_element_to_appear(*self.CURRENT_PROVIDER_FIELD)
-        self.input(result, *self.CURRENT_PROVIDER_FIELD)
+        self.input(provider, *self.CURRENT_PROVIDER_FIELD)
+        self.wait_for_certain_amount_of_elements(1, *self.CURRENT_PROVIDER_FIRST_SELECT)
         self.wait_for_element_to_be_clickable_click(*self.CURRENT_PROVIDER_FIRST_SELECT)
+        self.wait_for_element_to_appear(*self.CURRENT_PROVIDER_SELECTED)
+
+    def enter_email(self, email):
+        self.wait_for_element_to_appear(*self.EMAIL_INPUT_FIELD)
+        self.input(email, *self.EMAIL_INPUT_FIELD)
+
+    def click_show_quotes(self):
+        self.wait_for_element_to_be_clickable_click(*self.SHOW_QUOTES_BUTTON)

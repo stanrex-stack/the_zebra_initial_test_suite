@@ -1,10 +1,9 @@
-from selenium.webdriver.common.by import By
-from behave import given, when, then
-from time import sleep
+from behave import then
+
 from selenium.webdriver.support import expected_conditions as EC
 
 
-@then('Close {element_choice} Window')
+@then('Close {element_choice} window')
 def windows_handeling(context, element_choice):
     if element_choice == "Newly Opened":
         window_index = 1
@@ -16,4 +15,3 @@ def windows_handeling(context, element_choice):
     new_window = context.driver.window_handles[window_index]
     context.driver.switch_to_window(new_window)
     context.driver.close()
-

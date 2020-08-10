@@ -22,7 +22,7 @@ def verify_zip_error_present(context):
     context.app.main_page.verify_zip_error_present()
 
 
-@then('Verify Zip Error text is {text}')
+@then('Verify Zip Error text is{text}')
 def verify_zip_error_text(context, text):
     context.app.main_page.verify_zip_error_text(text)
 
